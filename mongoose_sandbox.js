@@ -43,25 +43,24 @@ db.once("open", function(){
         name: "Vic"
     });
 
-    Animal.remove({}, function(err){
+    Animal.remove({}, function(err) {
         if (err) console.error(err);
-        elephant.save(function(err){
+        elephant.save(function(err) {
             if (err) console.error(err);
-            animal.save(function(err){
+            animal.save(function(err) {
                 if (err) console.error(err);
                 whale.save(function(err){
+                    if (err) console.error(err);
                     Animal.find({size: "big"}, function(err, animals) {
                         animals.forEach(function(animal){
-                            console.log(animal.name + " the " + animal.color + " " + animal.type);
+                            console.log(animal.name + " the " + animal.type);
                         });
-                    });
-                    db.close(function(){
-                        console.log("db connection closed!");
+                        db.close(function() {
+                            console.log("db connection closed!");
+                        });
                     });
                 });
             });
         });
     });
-
-
 });
